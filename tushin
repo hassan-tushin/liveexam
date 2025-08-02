@@ -1,28 +1,77 @@
-void main() {
-  List<Map<String, dynamic>> students = [
-    {"name": "Alice", "scores": [85, 90, 78]},
-    {"name": "Bob", "scores": [88, 76, 95]},
-    {"name": "Charlie", "scores": [90, 92, 85]}
-  ];
+import 'package:flutter/material.dart';
 
-  // Step 1: Calculate averages
-  Map<String, double> averages = {};
-  for (var student in students) {
-    String name = student['name'];
-    List<int> scores = List<int>.from(student['scores']);
-    double avg = scores.reduce((a, b) => a + b) / scores.length;
-    averages[name] = double.parse(avg.toStringAsFixed(2));
+
+class Exam2 extends StatelessWidget {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController salaryController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      
+      appBar: AppBar(
+        title: Text("Add Employe",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+
+        ),
+        
+      ),
+   backgroundColor: Colors.pink[50],
+      body:
+      Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+           
+            
+            SizedBox(height: 30),
+            TextFormField(
+              controller: nameController,
+              decoration: InputDecoration(
+                labelText: 'Name',
+                border: UnderlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+              controller: ageController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: 'Age',
+                border: UnderlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+              controller: salaryController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: 'Salary',
+                border: UnderlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 30),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Logic to add employee
+                },
+                child: Text('Add Employee'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.purple,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                 
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
   }
-
-  
-  var sortedEntries = averages.entries.toList()
-    ..sort((a, b) => b.value.compareTo(a.value));
-
- 
-  Map<String, double> sortedAverages = {
-    for (var entry in sortedEntries) entry.key: entry.value
-  };
-
-  
-  print(sortedAverages);
 }
